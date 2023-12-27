@@ -11,6 +11,14 @@ public class Employee {
     public Employee() {
     }
 
+    public Employee(int id, String name, String mobile, String designation, String password) {
+        this.id = id;
+        this.name = name;
+        this.mobile = mobile;
+        this.designation = designation;
+        this.password = password;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -50,10 +58,19 @@ public class Employee {
         return designation;
     }
 
-    public String getPassword(int id, String old_password, String email) {
-        if (id == 5757 && old_password.equals("saurabh") && email.equals("saurabhgambhire@gmail.com"))
+    public String getPassword(int id, String old_password) {
+        if (id == 5757 && old_password.equals("saurabh"))
             return password;
 
         return "Please Provide Valid Credentials";
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", designation='" + designation + '\'' +
+                '}';
     }
 }
