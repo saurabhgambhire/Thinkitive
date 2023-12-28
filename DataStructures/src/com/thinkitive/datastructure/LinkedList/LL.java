@@ -88,6 +88,26 @@ public class LL {
     }
 
 
+    // Reverse a Linked List
+    public void reverseList() {
+        Node prev = head;
+        Node curr = head.next;
+
+        if (head == null || head.next == null) {
+            return;
+        }
+
+        while (curr != null) {
+            Node next = curr.next;
+            curr.next = prev;
+            // update
+            prev = curr;
+            curr = next;
+        }
+        head.next = null;
+        head = prev;
+    }
+
 
     public static void main(String[] args) {
         LL ll = new LL();
@@ -100,7 +120,8 @@ public class LL {
         ll.printList();
         System.out.println();
         //ll.deleteFirst();
-        ll.deleteLast();
+//        ll.deleteLast();
+        ll.reverseList();
         ll.printList();
 
 
