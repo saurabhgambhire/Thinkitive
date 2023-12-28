@@ -1,32 +1,19 @@
 package com.thinkitive.assignments;
 
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.Callable;
 
-public class GetPrimeNumbers implements Runnable {
+public class GetPrimeNumbers implements Callable<Integer> {
     private int start;
     private int end;
-    private Integer[] sum;
 
     GetPrimeNumbers(int start, int end) {
         this.start = start;
         this.end = end;
     }
 
-    public GetPrimeNumbers(int start, int end, Integer[] sum) {
-        this.start = start;
-        this.end = end;
-        this.sum = sum;
-    }
-
     @Override
-    public void run() {
-        int primeSum = calculatePrimeSum(start, end);
-        sum[0] += primeSum;
-        System.out.println("Sum of prime numbers from " + start + " to " + end + ": " + primeSum);
-    }
-
-    public int getSum() {
-        return sum[0];
+    public Integer call() throws Exception {
+        return calculatePrimeSum(start, end);
     }
 
     private int calculatePrimeSum(int start, int end) {
@@ -36,6 +23,7 @@ public class GetPrimeNumbers implements Runnable {
                 primeSum += i;
             }
         }
+        System.out.println("The sum of " + start + " and " + end + "is " + primeSum);
         return primeSum;
     }
 
