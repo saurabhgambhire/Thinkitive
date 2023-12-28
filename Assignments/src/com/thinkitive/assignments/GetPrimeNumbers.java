@@ -3,42 +3,16 @@ package com.thinkitive.assignments;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class GetPrimeNumbers implements Runnable {
-//    int start;
-//    int end;
-//
-//    GetPrimeNumbers(int start, int end) {
-//        this.start = start;
-//        this.end = end;
-//    }
-//
-//    @Override
-//    public void run() {
-//        printPrimeNumbers(start, end);
-//        System.out.println();
-//    }
-//
-//    private void printPrimeNumbers(int start, int end) {
-//        for (int i = start; i < end; i++) {
-//            if (isPrime(i)) {
-//                System.out.print(i + " ");
-//            }
-//        }
-//    }
-//
-//    private boolean isPrime(int num) {
-//        for (int j = 2; j < num; j++) {
-//            if (num % j == 0) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-
     private int start;
     private int end;
-    private AtomicInteger sum;
+    private Integer[] sum;
 
-    GetPrimeNumbers(int start, int end, AtomicInteger sum) {
+    GetPrimeNumbers(int start, int end) {
+        this.start = start;
+        this.end = end;
+    }
+
+    public GetPrimeNumbers(int start, int end, Integer[] sum) {
         this.start = start;
         this.end = end;
         this.sum = sum;
@@ -47,8 +21,12 @@ public class GetPrimeNumbers implements Runnable {
     @Override
     public void run() {
         int primeSum = calculatePrimeSum(start, end);
-        sum.addAndGet(primeSum);
+        sum[0] += primeSum;
         System.out.println("Sum of prime numbers from " + start + " to " + end + ": " + primeSum);
+    }
+
+    public int getSum() {
+        return sum[0];
     }
 
     private int calculatePrimeSum(int start, int end) {
