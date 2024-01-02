@@ -1,8 +1,6 @@
-package com.thinkitive.designpatterns;
+package com.thinkitive.designpatterns.Singleton;
 
 public class Singleton {
-    // constructor private
-
     private static Singleton singleton = null;
 
     private Singleton(){
@@ -10,7 +8,9 @@ public class Singleton {
 
     public static Singleton getObject(){
         if (singleton == null) {
-            singleton = new Singleton();
+            synchronized(Singleton.class){
+                singleton = new Singleton();
+            }
         }
 
         return singleton;
