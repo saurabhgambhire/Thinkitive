@@ -4,6 +4,9 @@ public class Singleton {
     private static Singleton singleton = null;
 
     private Singleton(){
+        if (singleton!=null) {
+            new RuntimeException("You are trying to break Singleton pattern");
+        }
     }
 
     public static Singleton getObject(){
