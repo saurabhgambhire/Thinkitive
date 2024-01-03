@@ -9,7 +9,6 @@ public class Driver {
 
         Connection connection2 = (Connection) connection.clone();
 
-        connection2.setImportantData();
         System.out.println(connection2);
 
     }
