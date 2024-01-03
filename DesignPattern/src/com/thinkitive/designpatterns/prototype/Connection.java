@@ -1,9 +1,12 @@
 package com.thinkitive.designpatterns.prototype;
 
-public class Connection implements Cloneable{
-    private int connection;
+import java.util.List;
 
-    Connection(){
+public class Connection implements Cloneable {
+    private int connection;
+    private List<String> domains;
+
+    Connection() {
 
     }
 
@@ -15,7 +18,7 @@ public class Connection implements Cloneable{
         this.connection = connection;
     }
 
-    public void setImportantData() throws InterruptedException{
+    public void setImportantData() throws InterruptedException {
         System.out.println("Loading Important Data");
         Thread.sleep(5000);
     }
@@ -25,13 +28,22 @@ public class Connection implements Cloneable{
         return "Connection [connection=" + connection + "]";
     }
 
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
+    public List<String> getDomains() {
+        return domains;
     }
 
-    
+    public void setDomains(List<String> domains) {
+        this.domains = domains;
+    }
 
-    
-    
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        // deep cloning 
+        Connection connection = new Connection();
+        connection.setConnection(this.getConnection());
+        for (String domain : this.getDomains()) {
+            connection.getDomains().add(domain);
+        }
+        return super.clone();
+    }
 }
