@@ -1,8 +1,6 @@
 package com.thinkitive.StreamApi;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -23,7 +21,26 @@ public class StudentDriver {
         List<Student> pune = students.stream().filter(student -> student.getCity().equals("pune"))
                 .sorted(Comparator.comparing(Student::getName, Comparator.reverseOrder()))  // Comparator.reverseOrder() - for reverse Order
                 .collect(Collectors.toList());
-        System.out.println(pune);
+//        System.out.println(pune);
+
+
+        // find all cities
+        List<String> collect1 = students.stream().map(Student::getCity)
+                .distinct()
+                .collect(Collectors.toList());
+
+//        System.out.println(collect1);
+
+
+        // group by city
+
+//        Map<String, List<Student>> collect2 = students.stream().collect(Collectors.groupingBy(Student::getCity));
+//        System.out.println(collect2);
+
+
+        Map<String, Long> collect2 = students.stream().collect(Collectors.groupingBy(Student::getCity,Collectors.counting()));
+        System.out.println(collect2);
+
 
     }
 }
