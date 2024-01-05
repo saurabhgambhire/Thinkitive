@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -51,26 +52,25 @@ public class TaskCURD {
     }
 
     public StatusResponse deleteTask(Task task) {
-        if (task == null) {
-            return new StatusResponse(
-                    false,
-                    "Task Object cannot be Null"
-            );
-        }
+        Objects.requireNonNull(task, "Task Object cannot be Null");
 
-        Optional<Task> byId = taskRepository.findById(task.getId());
-        if (byId.isEmpty()) {
-            return new StatusResponse(
-                    false,
-                    "No Task Found you have provided"
-            );
-        }
+        Optional<Task> optionalTask = taskRepository.findById(task.getId());
+        optionalTask.ifPresent(foundTask -> {
+            taskRepository.delete(foundTask);
+        });
 
-        taskRepository.delete(byId.get());
-        return new StatusResponse(
-                true,
-                "Task Deleted Successfully",
-                byId.get()
+        return optionalTask.map(foundTask ->
+                new StatusResponse(
+                        true,
+                        "Task Deleted Successfully",
+                        foundTask
+                )
+        ).orElseGet(() ->
+                new StatusResponse(
+                        false,
+                        "No Task Found you have provided"
+                )
         );
     }
+
 }
