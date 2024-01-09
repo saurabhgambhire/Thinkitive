@@ -3,6 +3,8 @@ package com.thinkitive.task1.service;
 import com.thinkitive.task1.entity.EligibilityRequest;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Field;
+
 @Service
 public class _270_Service {
 
@@ -39,4 +41,28 @@ public class _270_Service {
 
         return sb.toString();
     }
+
+    public String getNM1Format(EligibilityRequest eligibilityRequest) {
+        String dataString = "NM1*<Entity Identifier Code ,ex- PR - Payer>*<Entity Type Qualifier ,ex- 2 – Non-Person Entity>*<Information Source Last or Organization Name Children’s Special Health Care>*<Information Source First Name>*<Information Source Middle Name>*<Name Prefix>*<Information Source Name Suffix>*<Identification Code Qualifier FI – Federal Tax Payer Identification Number>*<Information Source Primary Identifier 356000158>*<Entity Relationship Code>*<Entity Identifier Code>~";
+
+        for (Field field : EligibilityRequest.class.getDeclaredFields()) {
+            field.setAccessible(true);
+            String fieldName = field.getName();
+            String placeholder = "<" + fieldName + ">";
+            try {
+                Object value = field.get(eligibilityRequest);
+                String replacement = (value != null) ? value.toString() : "";
+
+                dataString = dataString.replace(placeholder, replacement);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+
+        dataString = dataString.replaceAll(",ex-[^>]*>", "");
+        dataString = dataString.replaceAll("\\*\\*", "*");
+
+        return dataString;
+    }
+
 }
