@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ExceptionHandler" />
+        <module name="Task1" />
         <module name="core-spring" />
         <module name="Java8" />
       </profile>
@@ -25,6 +26,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="ExceptionHandler" options="-parameters" />
+      <module name="Task1" options="-parameters" />
       <module name="core-spring" options="-parameters" />
     </option>
   </component>
