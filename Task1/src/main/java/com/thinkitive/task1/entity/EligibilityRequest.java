@@ -100,4 +100,16 @@ public class EligibilityRequest {
                 ", patientRelationship='" + patientRelationship + '\'' +
                 '}';
     }
+
+    public String getSenderId() {
+        return "<?senderId>";
+    }
+
+    public String getReceiverId() {
+        return "<?receiverId>";
+    }
+
+    public String getTransactionControlNumber() {
+        return "<?transactionControlNumber>";
+    }
 }

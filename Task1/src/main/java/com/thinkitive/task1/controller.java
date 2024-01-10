@@ -12,14 +12,11 @@ public class controller {
     @Autowired
     private _270_Service service;
 
-    //    @PostMapping("/get")
-//    public String get270Format(@RequestBody EligibilityRequest eligibilityRequest){
-//        return service.get270Format(eligibilityRequest);
-//    }
-    @PostMapping("/get")
-    public String getNM1Format(@RequestBody EligibilityRequest eligibilityRequest) {
-        return service.getNM1Format(eligibilityRequest);
+        @PostMapping("/get")
+    public String get270Format(@RequestBody EligibilityRequest eligibilityRequest){
+        return service.get270Format(eligibilityRequest);
     }
+
 
 
 }
