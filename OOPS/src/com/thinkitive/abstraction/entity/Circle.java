@@ -22,6 +22,6 @@ public class Circle extends Shape {
 
     @Override
     public void displayInfo() {
-
+        System.out.println("Display Info");
     }
 }

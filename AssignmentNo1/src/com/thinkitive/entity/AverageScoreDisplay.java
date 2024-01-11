@@ -3,7 +3,6 @@ package com.thinkitive.entity;
 public class AverageScoreDisplay {
     private float runRate;
     private int predictedScore;
-
     public void update(double run, int wickets, int overs) {
         runRate = (float) (run / overs);
 
