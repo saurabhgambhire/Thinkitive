@@ -18,11 +18,16 @@ public class UserCURD {
     public ResponseEntity<StatusResponse> saveUser(User user) {
         
         if (user.getName() == null) {
-            throw new NullObjectException(404, "Object Cannot be Null");
+            throw new NullObjectException(
+                404, 
+                "Object Cannot be Null"
+                );
         }
 
         User save = userRepository.save(user);
-        return new ResponseEntity<>(new StatusResponse(
+
+        return new ResponseEntity<>(
+            new StatusResponse(
                 true,
                 "User Saved Successfully",
                 save
