@@ -16,6 +16,7 @@ public class UserCURD {
     private UserRepository userRepository;
 
     public ResponseEntity<StatusResponse> saveUser(User user) {
+        
         if (user.getName() == null) {
             throw new NullObjectException(404, "Object Cannot be Null");
         }
