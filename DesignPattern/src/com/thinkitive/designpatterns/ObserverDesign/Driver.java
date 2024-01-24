@@ -2,6 +2,7 @@ package com.thinkitive.designpatterns.ObserverDesign;
 
 public class Driver {
     public static void main(String[] args) {
+
         YoutubeChannle channle = new YoutubeChannle();
         Subscriber saurabh = new Subscriber("Saurabh");      
         Subscriber vijyesh = new Subscriber("vijyesh");

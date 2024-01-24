@@ -52,7 +52,10 @@ public class TaskCURD {
     }
 
     public StatusResponse deleteTask(Task task) {
-        Objects.requireNonNull(task, "Task Object cannot be Null");
+        Objects.requireNonNull(
+                task,
+                 "Task Object cannot be Null"
+                 );
 
         Optional<Task> optionalTask = taskRepository.findById(task.getId());
         optionalTask.ifPresent(foundTask -> {
